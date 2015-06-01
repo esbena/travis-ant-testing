@@ -24,7 +24,7 @@
     <delete dir="build" />
   </target>
 
-  <target name="test" depends="build">
+  <target name="test-travis" depends="build">
     <javac srcdir="test/src" includes="**" destdir="build" optimize="${optimize}" debug="${debug}" 
            includeantruntime="false" source="1.8">
       <classpath refid="classpath" />
