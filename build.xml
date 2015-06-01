@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="travis-ant-testing" basedir=".">
+
+  <path id="classpath">
+    <fileset dir="." includes="lib/**/*.jar" />
+  </path>
+
+  <path id="classpath.test">
+    <fileset dir="." includes="lib/**/*.jar" />
+    <pathelement location="build" />
+  </path>
+
+  <target name="build" depends="clean">
+    <mkdir dir="build" />
+    <javac srcdir="src" includes="**" destdir="build" optimize="${optimize}" 
+           debug="true" includeantruntime="false" source="1.8">
+      <classpath refid="classpath" />
+      <compilerarg line="-encoding ISO-8859-1" compiler="modern" />
+    </javac>
+  </target>
+
+  <target name="clean">
+    <delete dir="build" />
+  </target>
+
+  <target name="test" depends="build">
+    <javac srcdir="test/src" includes="**" destdir="build" optimize="${optimize}" debug="${debug}" 
+           includeantruntime="false" source="1.8">
+      <classpath refid="classpath" />
+      <compilerarg line="-encoding ISO-8859-1" compiler="modern" />
+      <compilerarg line="-Xlint -Xlint:-serial -Xlint:-path" compiler="modern" />
+    </javac>
+    <!-- <junit fork="true" printsummary="yes" showoutput="yes" haltonfailure="no" haltonerror="no"> -->
+    <junit fork="true" showoutput="yes" haltonfailure="true">
+      <classpath refid="classpath.test" />
+      <test name="dk.esbena.travisAntTesting.Tester"/>
+      <formatter type="plain" usefile="false" />
+
+    </junit>
+  </target>
+
+
+</project>
