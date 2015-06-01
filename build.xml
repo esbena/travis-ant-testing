@@ -32,11 +32,10 @@
       <compilerarg line="-Xlint -Xlint:-serial -Xlint:-path" compiler="modern" />
     </javac>
     <!-- <junit fork="true" printsummary="yes" showoutput="yes" haltonfailure="no" haltonerror="no"> -->
-    <junit fork="true" showoutput="yes" haltonfailure="true">
+    <junit fork="true" haltonfailure="true">
       <classpath refid="classpath.test" />
       <test name="dk.esbena.travisAntTesting.Tester"/>
       <formatter type="plain" usefile="false" />
-
     </junit>
   </target>
 
